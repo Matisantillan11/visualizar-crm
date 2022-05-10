@@ -1,5 +1,5 @@
 import {Token, User} from '@/interfaces/interfaces';
-
+import { useUserInformation } from '@/hooks/useUserInformation';
 export interface AuthState {
   status: 'fetching' | 'fetched' | 'error' | 'initial';
   message: string;
@@ -42,6 +42,7 @@ type AuthAction =
   | {type: 'LOGIN_REJECTED'; payload: {result: any; status: string; message: string; error: boolean}};
 
 export const authReducer = (state: AuthState, action: AuthAction): AuthState => {
+  
   switch (action.type) {
     case 'LOGIN_PENDING': {
       return {
@@ -52,11 +53,12 @@ export const authReducer = (state: AuthState, action: AuthAction): AuthState => 
     case 'LOGIN_FULLFILLED': {
       const {result, status, message, error} = action.payload;
 
-      const token = result.token.token;
-      const userId = result.user._id;
+      const token = result.token;
+      const user= result.user;
 
-      localStorage.setItem('token', token);
-      localStorage.setItem('userId', userId);
+      localStorage.setItem('user', JSON.stringify(user))
+      localStorage.setItem('userId', user._id)
+      localStorage.setItem('token', token.token)
 
       return {
         ...state,

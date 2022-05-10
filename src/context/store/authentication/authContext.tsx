@@ -2,6 +2,7 @@ import React, {createContext, useReducer} from 'react';
 import {api} from '@/utils/lib/api/axios.config';
 import {authInitialState, authReducer} from './auth.reducer';
 import config from '@/config/dev-local.config'
+import { API_ROUTES } from '@/utils/constants/API_ROUTES';
 
 type AuthContextProps = {
   login: (email: string, password: string) => void;
@@ -19,9 +20,9 @@ export const AuthProvider = ({children}: any) => {
   const [authState, dispatch] = useReducer(authReducer, authInitialState);
 
   const login = async (email: string, password: string) => {
-    if (email !== '' && password !== '') {
+    if(email !== '' && email !== 'example@example.com' && password !== '' && password !== '3x4mpl3_123'){
       dispatch({type: 'LOGIN_PENDING'});
-      const payload = await api.post(`/auth/login/${config.db}`, {email, password});
+      const payload = await api.post(`${API_ROUTES.AUTH.LOGIN}/${config.db}`, {email, password});
 
       if (payload.data.status !== 404 && payload.data.status !== 500) {
         return dispatch({

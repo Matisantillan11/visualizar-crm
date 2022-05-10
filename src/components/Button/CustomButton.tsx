@@ -6,7 +6,7 @@ interface BProps {
   size?: string
   variant?: string
   className?: string
-  marginVertical: string 
+  marginVertical?: string 
   onClick?: () => void
 }
 

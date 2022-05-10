@@ -8,6 +8,7 @@ import { IoEyeSharp as ShowIcon, IoEyeOffSharp as NoShowIcon } from "react-icons
 
 import LogoVisualizar from '@/assets/images/Logo-VisualizAR.svg'
 import '@/components/Login/styles/home.styles.css'
+import { ModalResponseController } from '@/controllers/Modal/ModalResponse.controller';
 
 export interface ILogin {
   email: string
@@ -18,6 +19,8 @@ export interface ILogin {
   setEmail: (value: string | ((prevVar: string) => string)) => void 
   setPassword: (value: string | ((prevVar: string) => string)) => void 
   setShow:  (value: boolean | ((prevVar: boolean) => boolean)) => void
+  result: any
+  message: string
   SignIn: () => void
   validateField: (typeInput: string, value: string) => boolean
 }
@@ -31,6 +34,8 @@ export const LoginComponent = ({
   setEmail,
   setPassword,
   setShow,
+  result,
+  message,
   SignIn,
   validateField,
 }: ILogin) => {
@@ -77,7 +82,7 @@ export const LoginComponent = ({
                   ? false
                   : true
                 : false
-            }>
+            }> 
               <InputGroup>
                 <Input outline='none' color="white" value={password} onChange={(e: any) => setPassword(e.target.value)} type={show ? "text" : "password"} width='100%'/>
                 <InputRightElement children={show ? <ShowIcon onClick={() => setShow(!show)} color="white"/> : <NoShowIcon onClick={() => setShow(!show)} color="white"/>} />
@@ -93,9 +98,9 @@ export const LoginComponent = ({
 
             <Button color="#673AB7" marginVertical='45px' onClick={SignIn}> Ingresar </Button>
           </div>
+          <ModalResponseController status={status} result={result} message={message}/>  
         </Container>
         )
-          
       }
     </Fragment>
   )

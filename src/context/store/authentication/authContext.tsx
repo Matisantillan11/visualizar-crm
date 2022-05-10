@@ -22,19 +22,22 @@ export const AuthProvider = ({children}: any) => {
   const login = async (email: string, password: string) => {
     if(email !== '' && email !== 'example@example.com' && password !== '' && password !== '3x4mpl3_123'){
       dispatch({type: 'LOGIN_PENDING'});
-      const payload = await api.post(`${API_ROUTES.AUTH.LOGIN}/${config.db}`, {email, password});
-
-      if (payload.data.status !== 404 && payload.data.status !== 500) {
-        return dispatch({
-          type: 'LOGIN_FULLFILLED',
-          payload: {
-            result: payload.data.result,
-            status: 'fetched',
-            message: payload.data.message,
-            error: payload.data.error,
-          },
-        });
-      } else {
+      try {
+        
+        const payload = await api.post(`${API_ROUTES.AUTH.LOGIN}/${config.db}`, {email, password});
+        console.log({payload})
+        if (payload.data.status !== 404 && payload.data.status !== 401 && payload.data.status !== 500) {
+          return dispatch({
+            type: 'LOGIN_FULLFILLED',
+            payload: {
+              result: payload.data.result,
+              status: 'fetched',
+              message: payload.data.message,
+              error: payload.data.error,
+            },
+          });
+        } 
+        
         return dispatch({
           type: 'LOGIN_REJECTED',
           payload: {
@@ -44,7 +47,18 @@ export const AuthProvider = ({children}: any) => {
             error: payload.data.error,
           },
         });
+      } catch (error: any) {
+        return dispatch({
+          type: 'LOGIN_REJECTED',
+          payload: {
+            result: error.response.data.result,
+            status: 'error',
+            message: error.response.data.message,
+            error: error.response.data.error,
+          },
+        });
       }
+      
     }
   };
 

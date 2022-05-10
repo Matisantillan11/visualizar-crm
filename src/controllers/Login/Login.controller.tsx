@@ -5,7 +5,7 @@ import { useValidateForm } from '@/hooks/useValidationForm'
 
 export const LoginController = () => {
   const { validateField } = useValidateForm()
-  const { login, status, result } = useContext(AuthContext)
+  const { login, status, result, message } = useContext(AuthContext)
   const [ email, setEmail] = useState('example@example.com')
   const [ password, setPassword ] = useState('3x4mpl3_123')
   const [ show, setShow ] = useState(false)
@@ -38,6 +38,8 @@ export const LoginController = () => {
       setShow={setShow}
       SignIn={SignIn}
       status={status}
+      result={result}
+      message={message}
       formTested={formTested}
       validateField={validateField}
     />

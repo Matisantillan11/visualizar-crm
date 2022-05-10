@@ -7,10 +7,11 @@ interface BProps {
   variant?: string
   className?: string
   marginVertical: string 
+  onClick?: () => void
 }
 
-const ButtonHelper: React.FC<BProps> = ({ children, className }) => {
-  return <button className={className}>{children}</button>
+const ButtonHelper: React.FC<BProps> = ({ children, className, onClick }) => {
+  return <button className={className} onClick={onClick}>{children}</button>
 }
 
 //component

@@ -4,13 +4,23 @@ import { BrowserRouter } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react'
 
 import './index.css';
+import { AuthProvider } from './context/store/authentication/authContext';
+
+const AppState = ({children}: any) => {
+  return (
+    <AuthProvider>
+      {children}
+    </AuthProvider>
+  );
+};
 
 ReactDOM.render(
   <BrowserRouter>
     <ChakraProvider>
-      <App />
+      <AppState>
+        <App />
+      </AppState>
     </ChakraProvider>
   </BrowserRouter>,
   document.getElementById('root')
 );
-

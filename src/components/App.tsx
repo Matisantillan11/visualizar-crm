@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router'
-import { HomeView as Home } from '@/views/Home/Home.view';
+import { LoginView as Login } from '@/views/Login/Login.view';
 
 export const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />}/>
+      <Route path="/" element={<Login />}/>
     </Routes>
   )
 }

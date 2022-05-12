@@ -3,7 +3,7 @@ import { Box } from '@chakra-ui/react'
 
 export const HomeComponent = () => {
 	return (
-		<Box minW='100vw' h='100vh' background='black'>
+		<Box minW='100vw' h='100vh' background='black' position='relative'>
 			<NavbarController />
 		</Box>
 	)

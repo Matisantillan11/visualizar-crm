@@ -40,8 +40,12 @@ export const Stick = styled(StickHelper)`
 	}
 `
 
-export const HamburguerComponent = () => {
-	const [status, setStatus] = useState('close')
+interface IHamburguer {
+	status: string
+	setStatus: (value: string | ((prevState: string) => string)) => void
+}
+
+export const HamburguerComponent = ({ status, setStatus }: IHamburguer) => {
 	return (
 		<Container
 			margin='0'

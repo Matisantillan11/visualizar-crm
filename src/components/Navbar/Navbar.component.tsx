@@ -5,6 +5,7 @@ import { AiOutlinePoweroff as LogoutIcon } from 'react-icons/ai'
 import { DrawerController } from '@/controllers/Drawer/Drawer.controller'
 import { DrawerItemController } from '@/controllers/Drawer/DrawerItem.controller'
 import { FaUserAlt as UserIcon } from 'react-icons/fa'
+import { ENTITIES } from '@/utils/constants/ENTITIES'
 export interface INavbar {
 	SignOut: () => void
 	status: string
@@ -25,9 +26,11 @@ export const NavbarComponent = ({ SignOut, status, setStatus }: INavbar) => {
 		>
 			<HamburguerComponent status={status} setStatus={setStatus} />
 			<DrawerController color={colors.primary} status={status}>
-				<DrawerItemController title='User' colorText={colors.white}>
-					<UserIcon size={20} color={colors.white} />
-				</DrawerItemController>
+				{ENTITIES.map((entity) => (
+					<DrawerItemController title={entity.name} colorText={colors.white}>
+						<entity.icon size={20} color={colors.white} />
+					</DrawerItemController>
+				))}
 			</DrawerController>
 			<LogoutIcon onClick={SignOut} color={colors.white} size={25} />
 		</Box>

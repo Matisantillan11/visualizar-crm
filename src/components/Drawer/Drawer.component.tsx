@@ -19,6 +19,11 @@ export const DrawerComponent = ({ status, color, children }: IDrawer) => {
 			position='absolute'
 			transition='all 0.5s linear'
 			transform={status === 'open' ? 'translateX(0%)' : 'translateX(-100%)'}
+			__css={{
+				'::-webkit-scrollbar': {
+					display: 'none',
+				},
+			}}
 		>
 			{children}
 		</Box>

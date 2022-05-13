@@ -5,7 +5,7 @@ export const TableController = () => {
 	const data = [
 		{ name: 'Anom', age: 19, gender: 'Male' },
 		{ name: 'Megha', age: 19, gender: 'Female' },
-		{ name: 'Subham', age: 25, gender: 'Male' },
+		{ age: 25, gender: 'Male' },
 	]
 
 	const columns = useMemo(() => {
@@ -13,5 +13,9 @@ export const TableController = () => {
 		return []
 	}, [data])
 
-	return <TableComponent data={data} columns={columns} />
+	const keyRows = useMemo(() => {
+		if (columns.length > 0) return columns
+		return []
+	}, [columns])
+	return <TableComponent data={data} columns={columns} keyRows={keyRows} />
 }

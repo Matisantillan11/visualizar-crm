@@ -1,7 +1,9 @@
 import { TableComponent } from '@/components/Table/Table.component'
-import { useMemo } from 'react'
-import { useTable } from 'react-table'
+import { useMemo, useState } from 'react'
+
 export const TableController = () => {
+	const [fieldChecked, setFieldChecked] = useState<number[]>([])
+
 	const data = [
 		{ name: 'Anom', age: 19, gender: 'Male' },
 		{ name: 'Megha', age: 19, gender: 'Female' },
@@ -17,5 +19,14 @@ export const TableController = () => {
 		if (columns.length > 0) return columns
 		return []
 	}, [columns])
-	return <TableComponent data={data} columns={columns} keyRows={keyRows} />
+
+	const addFieldChecked = (value: number, checked: any) => {
+		if (checked) {
+			setFieldChecked((prevState: number[]) => [...prevState, value])
+		} else {
+			setFieldChecked(fieldChecked.filter((field) => field !== value))
+		}
+	}
+
+	return <TableComponent data={data} columns={columns} keyRows={keyRows} addFieldChecked={addFieldChecked} />
 }

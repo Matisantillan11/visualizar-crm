@@ -1,7 +1,7 @@
 import { TableComponent } from '@/components/Table/Table.component'
 import { useMemo, useState } from 'react'
 
-export const TableController = () => {
+export const TableController = ({ status }: any) => {
 	const [fieldChecked, setFieldChecked] = useState<number[]>([])
 
 	const data = [
@@ -28,5 +28,7 @@ export const TableController = () => {
 		}
 	}
 
-	return <TableComponent data={data} columns={columns} keyRows={keyRows} addFieldChecked={addFieldChecked} />
+	return (
+		<TableComponent data={data} columns={columns} keyRows={keyRows} addFieldChecked={addFieldChecked} status={status} />
+	)
 }

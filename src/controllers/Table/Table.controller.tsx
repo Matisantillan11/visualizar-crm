@@ -1,14 +1,12 @@
 import { TableComponent } from '@/components/Table/Table.component'
 import { useMemo, useState } from 'react'
 
-export const TableController = ({ status }: any) => {
-	const [fieldChecked, setFieldChecked] = useState<number[]>([])
-
-	const data = [
-		{ name: 'Anom', age: 19, gender: 'Male' },
-		{ name: 'Megha', age: 19, gender: 'Female' },
-		{ age: 25, gender: 'Male' },
-	]
+export interface ITableController {
+	status: string
+	data: any
+}
+export const TableController = ({ status, data }: ITableController) => {
+	const [fieldChecked, setFieldChecked] = useState<string[]>([])
 
 	const columns = useMemo(() => {
 		if (data.length > 0) return Object.keys(data[0])
@@ -20,9 +18,9 @@ export const TableController = ({ status }: any) => {
 		return []
 	}, [columns])
 
-	const addFieldChecked = (value: number, checked: any) => {
+	const addFieldChecked = (value: string, checked: any) => {
 		if (checked) {
-			setFieldChecked((prevState: number[]) => [...prevState, value])
+			setFieldChecked((prevState: string[]) => [...prevState, value])
 		} else {
 			setFieldChecked(fieldChecked.filter((field) => field !== value))
 		}

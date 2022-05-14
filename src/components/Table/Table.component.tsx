@@ -5,7 +5,7 @@ interface ITable {
 	columns: any
 	data: any
 	keyRows: any
-	addFieldChecked: (value: number, checked: any) => void
+	addFieldChecked: (value: string, checked: any) => void
 	status: string
 }
 export const TableComponent = ({ columns, data, keyRows, addFieldChecked, status }: ITable) => {
@@ -39,7 +39,7 @@ export const TableComponent = ({ columns, data, keyRows, addFieldChecked, status
 							<Tr key={index} _hover={{ backgroundColor: colors.dryPrimary }}>
 								<Td>
 									<Checkbox
-										onChange={(e: any) => addFieldChecked(index, e.target.checked)}
+										onChange={(e: any) => addFieldChecked(val._id, e.target.checked)}
 										colorScheme={colors.primary}
 									/>
 								</Td>

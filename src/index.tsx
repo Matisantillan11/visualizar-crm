@@ -6,11 +6,14 @@ import { ChakraProvider } from '@chakra-ui/react'
 import './index.css'
 import { AuthProvider } from './context/store/authentication/authContext'
 import { BookProvider } from './context/store/entities/book.action'
+import { UserProvider } from './context/store/entities/user/user.action'
 
 const AppState = ({ children }: any) => {
 	return (
 		<AuthProvider>
-			<BookProvider>{children}</BookProvider>
+			<UserProvider>
+				<BookProvider>{children}</BookProvider>
+			</UserProvider>
 		</AuthProvider>
 	)
 }

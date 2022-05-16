@@ -5,4 +5,7 @@ export const API_ROUTES = {
 	BOOKS: {
 		GET_ALL_WITHOUT_AUTH: '/book/withoutAuth',
 	},
+	USERS: {
+		GET_ALL_WITHOUT_AUTH: '/user/withoutAuth',
+	},
 }

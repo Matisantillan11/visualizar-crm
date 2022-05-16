@@ -7,7 +7,7 @@ import { Fragment } from 'react'
 export interface IHome {
 	status: string
 	setStatus: (value: string | ((prevState: string) => string)) => void
-	statusContext: 'fetched' | 'error' | 'initial' | 'fetching'
+	statusContext: never[] | 'fetched' | 'error' | 'initial' | 'fetching'
 	result: any
 }
 
